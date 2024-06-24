@@ -19,4 +19,4 @@ def predict():
     return jsonify(message)
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=True)#앱 실행 접근할 수 있도록 해줌.

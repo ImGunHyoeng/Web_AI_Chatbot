@@ -15,7 +15,7 @@ class Chatbox
     {
         const {openButton,chatBox,sendButton}=this.args;//생성자로 부터 인수를 전달받는다
 
-        openButton.addEventListener('click',()=>this.toggleState(chatBox))
+        openButton.addEventListener('click',()=>this.toggleState(chatBox))//toggleState는 해당하는 것이 활성화 되는지 않되는지를 판단하는 기준이다.
 
         sendButton.addEventListener('click',()=>this.onSendButton(chatBox))
 
@@ -33,7 +33,7 @@ class Chatbox
         this.state=!this.state;
 
         if(this.state){
-            chatbox.classList.add('chatbox--active')
+            chatbox.classList.add('chatbox--active')//클래스 속성에 접근할 수 있는 것이다.
 
         }
         else{
@@ -43,16 +43,16 @@ class Chatbox
 //메시지 보내기
     onSendButton(chatbox)
     {
-        var textField=chatbox.querySelector('input');
+        var textField=chatbox.querySelector('input');//input타입에 해당하는 값을 집어넣는다.
         let text1=textField.value
         if(text1==="")
         {
             return;
         }
         let msg1={ name: "User", message: text1}//챗봇으로 메시지를 보내기 위해서 dictionary형태로 저장,python과 같은 키로 설정해줘야한다.
-        this.messages.push(msg1);
+        this.messages.push(msg1);//메시지 배열에 해당하는 값을 집어넣어서 사용
         //해당위치로 파일 보내기
-        fetch($SCRIPT_ROOT+'/predict',{
+        fetch($SCRIPT_ROOT+'/predict',{//보내는 곳,json화 해서 보내기,보내는 방식을 설정
             method:'POST',
             body: JSON.stringify({message:text1}),
             mode: 'cors',
@@ -89,8 +89,8 @@ class Chatbox
 
         });
 
-        const chatmessage=chatbox.querySelector('.chatbox__messages');
-        chatmessage.innerHTML=html;
+        const chatmessage=chatbox.querySelector('.chatbox__messages');//해당하는 칸과 연동을 시켜줌.
+        chatmessage.innerHTML=html;//html의 문장을 추가하는 구문이다.
     }
 }
 const chatbox=new Chatbox();
